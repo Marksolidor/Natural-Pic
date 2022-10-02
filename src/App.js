@@ -1,24 +1,22 @@
-import "./styles.css";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Galeria from "./views/Galeria";
 import Navbar from "./components/Navbar";
+import AppProvider from "./context/AppContext";
+import Favorites from "./views/Favorites";
 
-import Home from "./views/Home";
-import Favoritos from "./views/Favoritos";
-
-export default function App() {
-  const endpoint = "/fotos.json";
-
+function App() {
   return (
-    <div className="App">
+    <AppProvider>
       <BrowserRouter>
         <Navbar />
-
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/" element={<Galeria />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="*" element={<h1>:( Pagina no encontrada)</h1>} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AppProvider>
   );
 }
+
+export default App;
